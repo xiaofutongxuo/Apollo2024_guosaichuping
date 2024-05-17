@@ -1,0 +1,6 @@
+enabled: true
+stop_distance: 1.7
+stop_strict_l_distance: 5.0
+stop_loose_l_distance: 8.0
+stop_timeout: 100.0
+max_stop_deceleration: 3.0
