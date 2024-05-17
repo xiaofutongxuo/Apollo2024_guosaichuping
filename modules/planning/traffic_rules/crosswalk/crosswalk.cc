@@ -343,6 +343,7 @@ bool Crosswalk::CheckStopForObstacle(
         ADEBUG << "need_stop(between l1 & l2): obstacle_id[" << obstacle_id << "] type[" << obstacle_type_name
                << "] obstacle_l_distance[" << obstacle_l_distance << "] crosswalk_id[" << crosswalk_id
                << "] USE_PREVIOUS_DECISION";
+        stop = true;
     }
 
     // check stop_deceleration
