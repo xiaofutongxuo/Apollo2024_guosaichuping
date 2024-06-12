@@ -24,8 +24,32 @@
 namespace apollo {
 namespace planning {
 
-bool RegionSpeedLimit::Init() {
-    return true;
+using apollo::common::Status;
+using apollo::hdmap::PathOverlap;
+
+bool RegionSpeedLimit::Init(const std::string& name, const std::shared_ptr<DependencyInjector>& injector) {
+    if (!TrafficRule::Init(name, injector)) {
+        return false;
+    }
+    // Load the config this task.
+    return TrafficRule::LoadConfig<RegionSpeedLimitConfig>(&config_);
+}
+
+Status RegionSpeedLimit::ApplyRule(Frame* const frame, ReferenceLineInfo* const reference_line_info) {
+    ReferenceLine* reference_line = reference_line_info->mutable_reference_line();
+    const std::vector<PathOverlap>& crosswalk_overlaps
+            = reference_line_info->reference_line().map_path().crosswalk_overlaps();
+
+    for (const auto& crosswalk_overlap : crosswalk_overlaps) {
+        reference_line->AddSpeedLimit(
+                crosswalk_overlap.start_s - config_.forward_buffer(),
+                crosswalk_overlap.end_s + config_.backward_buffer(),
+                config_.limit_speed());
+        AINFO << "限速区域: [" << crosswalk_overlap.start_s - config_.forward_buffer() << ","
+              << crosswalk_overlap.end_s + config_.backward_buffer() << "]";
+    }
+
+    return Status::OK();
 }
 
 }  // namespace planning
