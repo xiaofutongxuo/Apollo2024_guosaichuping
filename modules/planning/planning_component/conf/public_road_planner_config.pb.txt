@@ -7,17 +7,9 @@ scenario {
     type: "EmergencyStopScenario"
 }
 scenario {
-    name: "BEST_PARKING"
-    type: "BestParkingSpaceScenario"
-}
-scenario {
-    name: "OBSTACLE_PARKING"
-    type: "ObstacleParking"
-}
-scenario {
     name: "VALET_PARKING"
     type: "ValetParkingScenario"
- }
+}
 scenario {
     name: "BARE_INTERSECTION_UNPROTECTED"
     type: "BareIntersectionUnprotectedScenario"

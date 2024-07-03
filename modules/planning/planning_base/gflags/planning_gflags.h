@@ -262,6 +262,3 @@ DECLARE_double(open_space_max_jerk);
 
 // Edge follow buffer
 DECLARE_double(edge_follow_buffer);
-
-// rerouting
-DECLARE_bool(rerouting_count);

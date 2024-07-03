@@ -1,9 +1,0 @@
-syntax = "proto2";
-
-package apollo.planning;
-
-message RegionSpeedLimitConfig {
-    optional double forward_buffer = 1 [default = 10];
-    optional double backward_buffer = 2 [default = 1];
-    optional double limit_speed = 3 [default = 4.9];
-}
